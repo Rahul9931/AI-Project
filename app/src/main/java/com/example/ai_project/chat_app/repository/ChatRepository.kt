@@ -46,18 +46,19 @@ class ChatRepository(private val context: Context) {
     suspend fun initializeModel(): Result<Unit> = withContext(Dispatchers.IO) {
         return@withContext try {
             Log.d("ChatRepository", "Starting model initialization")
-            val modelFile = prepareModelFile()
-            Log.d("ChatRepository", "Model file path: ${modelFile.absolutePath}")
+            //val modelFile = prepareModelFile()
+            //Log.d("ChatRepository", "Model file path: ${modelFile.absolutePath}")
 
             val options = LlmInference.LlmInferenceOptions.builder()
-                .setModelPath(modelFile.absolutePath)
+//                .setModelPath(modelFile.absolutePath)
+                .setModelPath("/data/local/tmp/llm/$modelFileName")
                 .setMaxTokens(512)
                 .setMaxTopK(40)
-                .apply {
-                    val cacheDir = File(context.cacheDir, "tflite_cache").apply { mkdirs() }
-                    Log.d("ChatRepository", "Cache dir: ${cacheDir.absolutePath}")
-                    System.setProperty("org.tensorflow.lite.xnnpack.cache.dir", cacheDir.absolutePath)
-                }
+//                .apply {
+//                    val cacheDir = File(context.cacheDir, "tflite_cache").apply { mkdirs() }
+//                    Log.d("ChatRepository", "Cache dir: ${cacheDir.absolutePath}")
+//                    System.setProperty("org.tensorflow.lite.xnnpack.cache.dir", cacheDir.absolutePath)
+//                }
                 .build()
 
             Log.d("ChatRepository", "Creating LlmInference instance")
