@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'     // Add this line for Kotlin annotation processing
+}
+
+android {
+    namespace 'com.example.ai_project'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.ai_project"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures{
+        viewBinding true
+        dataBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        mlModelBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.4.4'
+    implementation 'androidx.activity:activity:1.8.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // mediapipe
+    implementation 'com.google.mediapipe:tasks-genai:0.10.24'
+
+    // ViewModel KTX (includes viewModelScope)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0"
+
+    // If you need other coroutine components:
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+
+    // Add this line for viewModels delegate
+    implementation "androidx.activity:activity-ktx:1.7.2"
+
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+
+    //annotationProcessor "com.android.databinding:compiler:3.1.4"  // Data binding compiler
+}
